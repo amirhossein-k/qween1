@@ -6,49 +6,37 @@ node_modules/
 dist/
 build/
 .next/
+out/
 
 # Environment variables
 .env
 .env.local
 *.env.*
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-selfcheck.json
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # Logs
 *.log
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
+# Temporary files
+*.tmp
 
-# IDE
-.vscode/
-.idea/
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# Coverage
+# Coverage reports
 coverage/
 htmlcov/
 .coverage
-*.coverage
 
-# Temporary files
-*.tmp
-*.temp
-*~
+# OS generated files
+.DS_Store
+Thumbs.db
 ```
