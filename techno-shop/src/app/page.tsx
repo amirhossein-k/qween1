@@ -319,15 +319,14 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-2 dir-ltr">
             {["08", "42", "15"].map((time, i) => (
-              <>
+              <React.Fragment key={`timer-${i}`}>
                 <div
-                  key={i}
                   className="bg-red-500/20 border border-red-500/40 text-red-400 px-3 py-1.5 rounded-xl font-mono text-lg font-bold"
                 >
                   {time}
                 </div>
                 {i < 2 && <span className="text-red-400 font-bold">:</span>}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>
