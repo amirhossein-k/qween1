@@ -1,9 +1,16 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Navbar from "@/components/products/Navbar";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [cartCount, setCartCount] = useState(0);
+  const [likedCount, setLikedCount] = useState(0);
+  const [query, setQuery] = useState("");
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -86,13 +93,20 @@ export default function HomePage() {
   ];
 
   return (
-    <motion.main
-      id="view-home"
-      className="flex-grow max-w-[1400px] w-full mx-auto px-4 sm:px-8 py-8 space-y-16"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <>
+      <Navbar
+        cartCount={cartCount}
+        likedCount={likedCount}
+        query={query}
+        onQuery={setQuery}
+      />
+      <motion.main
+        id="view-home"
+        className="flex-grow max-w-[1400px] w-full mx-auto px-4 sm:px-8 py-8 space-y-16"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
       {/* HERO SECTION */}
       <motion.section
         className="relative rounded-3xl glass-panel p-6 sm:p-12 overflow-hidden stage-tech-bg border border-blue-500/30"
@@ -406,5 +420,6 @@ export default function HomePage() {
         ))}
       </motion.section>
     </motion.main>
+    </>
   );
 }
