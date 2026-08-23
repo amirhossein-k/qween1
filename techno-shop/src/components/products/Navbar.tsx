@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { CartIcon, HeartIcon, MenuIcon, SearchIcon, UserIcon, CloseIcon } from "./icons";
 
 type Props = {
@@ -10,9 +11,16 @@ type Props = {
   onQuery: (value: string) => void;
 };
 
-const links = ["صفحه اصلی", "محصولات", "پیشنهاد شگفت‌انگیز", "بلاگ", "تماس با ما"];
+const navLinks = [
+  { label: "صفحه اصلی", href: "/" },
+  { label: "محصولات", href: "/products" },
+  { label: "پیشنهاد شگفت‌انگیز", href: "#" },
+  { label: "بلاگ", href: "#" },
+  { label: "تماس با ما", href: "#" },
+];
 
 export default function Navbar({ cartCount, likedCount, query, onQuery }: Props) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,19 +47,22 @@ export default function Navbar({ cartCount, likedCount, query, onQuery }: Props)
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {links.map((l, i) => (
-            <a
-              key={l}
-              href="#"
-              className={`rounded-xl px-3 py-2 text-[13px] font-medium transition ${
-                i === 1
-                  ? "bg-blue-500/15 text-blue-300"
-                  : "text-slate-300 hover:bg-white/5 hover:text-white"
-              }`}
-            >
-              {l}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`rounded-xl px-3 py-2 text-[13px] font-medium transition ${
+                  isActive
+                    ? "bg-blue-500/15 text-blue-300"
+                    : "text-slate-300 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="relative mr-auto hidden max-w-md flex-1 md:block">
@@ -105,13 +116,13 @@ export default function Navbar({ cartCount, likedCount, query, onQuery }: Props)
                 className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pr-9 pl-3 text-[13px] text-white outline-none placeholder:text-slate-500 focus:border-blue-500/60"
               />
             </div>
-            {links.map((l) => (
+            {navLinks.map((link) => (
               <a
-                key={l}
-                href="#"
+                key={link.label}
+                href={link.href}
                 className="block rounded-xl px-3 py-2 text-[13px] text-slate-300 transition hover:bg-white/5 hover:text-white"
               >
-                {l}
+                {link.label}
               </a>
             ))}
           </div>
