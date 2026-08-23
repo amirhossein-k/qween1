@@ -6,11 +6,26 @@ node_modules/
 dist/
 build/
 .next/
+out/
 
 # Environment variables
 .env
 .env.local
 *.env.*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # Python
 __pycache__/
@@ -22,10 +37,15 @@ env/
 venv/
 .venv/
 pip-log.txt
-pip-selfcheck.json
+pip-delete-this-directory.txt
+*.so
+.DS_Store
+Thumbs.db
 
-# Logs
-*.log
+# Temporary files
+*.tmp
+*.temp
+*.bak
 
 # OS generated files
 .DS_Store
@@ -35,20 +55,4 @@ pip-selfcheck.json
 .Trashes
 ehthumbs.db
 Thumbs.db
-desktop.ini
-
-# IDE
-.vscode/
-.idea/
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-*.coverage
-
-# Temporary files
-*.tmp
-*.temp
-*~
 ```
