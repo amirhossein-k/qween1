@@ -16,7 +16,7 @@ const navLinks = [
   { label: "محصولات", href: "/products" },
   { label: "پیشنهاد شگفت‌انگیز", href: "#" },
   { label: "بلاگ", href: "#" },
-  { label: "تماس با ما", href: "#" },
+  { label: "تماس با ما", href: "/contact-us" },
 ];
 
 export default function Navbar({ cartCount, likedCount, query, onQuery }: Props) {
