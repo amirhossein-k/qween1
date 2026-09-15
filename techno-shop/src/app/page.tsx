@@ -5,11 +5,36 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Navbar from "@/components/products/Navbar";
 import { useState } from "react";
+import ProductCarousel from "@/components/ProductCarousel";
 
 export default function HomePage() {
   const [cartCount, setCartCount] = useState(0);
   const [likedCount, setLikedCount] = useState(0);
   const [query, setQuery] = useState("");
+
+  // داده‌های نمونه برای پرفروش‌ها
+  const bestSellers = [
+    { id: 101, name: "گوشی موبایل اپل مدل iPhone 13 CH", price: 38000000, originalPrice: 42000000, image: "https://dkstatics-public.digikala.com/digikala-products/111242279.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "فروش ویژه", badgeColor: "bg-red-500" },
+    { id: 102, name: "گوشی موبایل سامسونگ مدل Galaxy S23 Ultra", price: 55000000, image: "https://dkstatics-public.digikala.com/digikala-products/c5f8b6e8d8a8f8e8d8a8f8e8d8a8f8e8d8a8f8e8.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "پرفروش", badgeColor: "bg-orange-500" },
+    { id: 103, name: "هدفون بی سیم اپل مدل AirPods Pro 2", price: 9500000, originalPrice: 11000000, image: "https://dkstatics-public.digikala.com/digikala-products/airpods-pro-2.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "تخفیف", badgeColor: "bg-green-500" },
+    { id: 104, name: "ساعت هوشمند اپل واچ سری 9", price: 18000000, image: "https://dkstatics-public.digikala.com/digikala-products/apple-watch-s9.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 105, name: "کنسول بازی سونی مدل PlayStation 5", price: 26000000, image: "https://dkstatics-public.digikala.com/digikala-products/ps5-slim.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "موجود شد", badgeColor: "bg-blue-500" },
+    { id: 106, name: "لپ تاپ 15.6 اینچی ایسوس TUF Gaming", price: 45000000, image: "https://dkstatics-public.digikala.com/digikala-products/asus-tuf.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 107, name: "tablet سامسونگ مدل Galaxy Tab S9", price: 22000000, image: "https://dkstatics-public.digikala.com/digikala-products/tab-s9.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 108, name: "دوربین عکاسی کانن مدل EOS R50", price: 32000000, image: "https://dkstatics-public.digikala.com/digikala-products/canon-r50.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+  ];
+
+  // داده‌های نمونه برای جدیدترین‌ها
+  const newArrivals = [
+    { id: 201, name: "گوشی موبایل شیائومی مدل 13T Pro", price: 28000000, image: "https://dkstatics-public.digikala.com/digikala-products/xiaomi-13t.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "جدید", badgeColor: "bg-purple-500" },
+    { id: 202, name: "هدفون گیمینگ ریزر مدل BlackShark V2", price: 4500000, image: "https://dkstatics-public.digikala.com/digikala-products/razer-blackshark.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 203, name: "اسپیکر بلوتوثی جی بی ال مدل Flip 6", price: 3800000, image: "https://dkstatics-public.digikala.com/digikala-products/jbl-flip6.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 204, name: "کیبورد مکانیکی لاجیتک G915", price: 6200000, image: "https://dkstatics-public.digikala.com/digikala-products/logitech-g915.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90", badge: "اورجینال", badgeColor: "bg-indigo-500" },
+    { id: 205, name: "مانیتور خمیده سامسونگ مدل Odyssey G5", price: 12000000, image: "https://dkstatics-public.digikala.com/digikala-products/samsung-g5.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 206, name: "هارد اکسترنال وسترن دیجیتال 2TB", price: 2800000, image: "https://dkstatics-public.digikala.com/digikala-products/wd-2tb.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 207, name: "ماوس بی سیم لاجیتک MX Master 3S", price: 4100000, image: "https://dkstatics-public.digikala.com/digikala-products/mx-master-3s.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+    { id: 208, name: "پاوربانک انکر 20000mAh", price: 1900000, image: "https://dkstatics-public.digikala.com/digikala-products/anker-powerbank.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -419,6 +444,20 @@ export default function HomePage() {
           </motion.div>
         ))}
       </motion.section>
+
+      {/* Best Sellers Carousel */}
+      <ProductCarousel 
+        title="پرفروش‌ترین محصولات" 
+        products={bestSellers} 
+        viewAllLink="/products?sort=best-selling"
+      />
+
+      {/* New Arrivals Carousel */}
+      <ProductCarousel 
+        title="جدیدترین محصولات" 
+        products={newArrivals} 
+        viewAllLink="/products?sort=newest"
+      />
     </motion.main>
     </>
   );
